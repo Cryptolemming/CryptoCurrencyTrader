@@ -4,7 +4,7 @@
   "description": "CryptoCurrency pair trader example with BTCUSD",
   "main": "indexjs",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
+    "start": "webpack-dev-server --mode development --open"
   },
   "author": "Cryptolemming",
   "license": "ISC",

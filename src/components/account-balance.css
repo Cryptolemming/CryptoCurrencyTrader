@@ -1,0 +1,30 @@
+.accountBalance {
+	margin: 5px auto 0;
+	width: 200px;
+}
+
+.title {
+	margin-left: 10px;
+	font-size: 12px;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+	width: 200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+li {
+	padding-left: 25px;
+}
+
+.currency {
+	font-weight: bold;
+}
+
+.balance {
+	padding-left: 10px;
+	font-size: 12px;
+}

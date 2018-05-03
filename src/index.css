@@ -1,5 +1,11 @@
 html, body {
 	padding: 0;
 	margin: 0;
-	background: #f8f8f8;
+	font-size: 14px;
+    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+	color: #1a1a1a;
+}
+
+body * {
+	box-sizing: border-box;
 }

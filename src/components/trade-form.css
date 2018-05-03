@@ -1,0 +1,54 @@
+.tradeForm {
+	font-size: 14px;
+}
+
+fieldset {
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+
+label {
+	margin-left: 20px;
+	font-size: 12px;
+}
+
+input {
+	display: block;
+	width: 200px;
+	background: transparent;
+	color: #1a1a1a;
+}
+
+.type {
+	margin: 5px auto 0;
+	padding: 8px 22px;
+	font-weight: bold;
+	border: 1px solid #919191;
+	font-size: 14px;
+}
+
+.value {
+	margin: 20px auto;
+	padding: 10px 22px;
+	border: 1px solid #c6c6c6;
+	font-size: 12px;
+}
+
+.submitTrade {
+    transition: background .25s ease-in-out;
+	background: #253ae4;
+	margin: -10px auto 0;
+	padding: 20px 85px;
+	border: 0;
+	color: white;
+	cursor: pointer;
+	width: 220px;
+	font-size: 14px;
+	letter-spacing: 2px;
+}
+
+.submitTrade:hover {
+    transition: background .25s ease-in-out;
+	background: #1C259B;
+}
