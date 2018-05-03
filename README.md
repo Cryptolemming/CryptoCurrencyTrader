@@ -13,19 +13,25 @@ Currency Pair Trading user interface for market trade between USD and BTC.  Pull
 ### `Tech`
 ---
 Webpack setup: [Simple webpack boilerplate](https://github.com/pinglinh/simple_webpack_boiletplate)
+
 Front-end: React, Redux
+
 API: [(BFX) API](https://docs.bitfinex.com/v1/reference)
+
 CORS proxy: [CORS-anywhere](http://cors-anywhere.herokuapp.com/)
 
 ### ``UI``
 ---
-Mockup:                                                     
+Mockup:
+
 <a href="https://imgbb.com/"><img src="https://image.ibb.co/b9Ojr7/mockup.png" alt="mockup" border="0"></a>
 
 Prototype:
+
 <a href="https://imgbb.com/"><img src="https://image.ibb.co/hHo64S/prototype.png" alt="prototype" border="0"></a>
 
 Initial fetch request loading:
+
 <a href="https://imgbb.com/"><img src="https://image.ibb.co/c3DHTn/loading.png" alt="loading" border="0"></a>
 
 ### ``Functionality``
