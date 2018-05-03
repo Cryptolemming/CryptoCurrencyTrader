@@ -23,7 +23,10 @@ export class TradeForm extends React.Component {
 		e.preventDefault();
 		const value = this.refs.base.value;
 		const conv = this.refs.conv.value;
-		if (!(this.props.balances.USD - value < 0) && !isNaN(value) && value !== '') {
+		if (!(this.props.balances.USD - value < 0)
+			&& !isNaN(value)
+			&& value !== ''
+			&& this.props.rate !== undefined) {
 			this.setState({
 				lowBalance: false,
 				value: ''
@@ -38,6 +41,9 @@ export class TradeForm extends React.Component {
 		const quote = value === '' || isNaN(value) || isNaN(rate)
 					? ''
 					: parseFloat((value / rate).toFixed(8));
+		const loading = rate === undefined
+					  ? <span className={style.loading}>loading...</span>
+					  : '';
 
 		return (
 			<form className={style.tradeForm} onSubmit={(e) => this.handleSubmitTrade(e)}>
@@ -65,6 +71,7 @@ export class TradeForm extends React.Component {
 						value='BTC'
 						readOnly
 					/>
+					{loading}
 					<input
 						type='text'
 						id='conv'
@@ -86,7 +93,8 @@ export class TradeForm extends React.Component {
 
 const mapStateToProps = state => ({
 	balances: state.balances,
-	rate: state.rate
+	rate: state.rate,
+	loading: state.loading
 })
 
 export default connect(mapStateToProps)(TradeForm);

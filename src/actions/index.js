@@ -11,6 +11,12 @@ export const fetchRateSuccess = rate => ({
 	rate
 })
 
+export const FETCH_RATE_ERROR = 'FETCH_RATE_ERROR';
+export const fetchRateError = error => ({
+	type: FETCH_RATE_ERROR,
+	error
+})
+
 export const fetchRate = () => dispatch => {
 	fetch('http://cors-anywhere.herokuapp.com/https://api.bitfinex.com/v1/pubticker/BTCUSD', {
 	  mode: 'cors'
@@ -19,9 +25,13 @@ export const fetchRate = () => dispatch => {
 		return res.json();
 	})
 	.then(rate => {
-		dispatch(fetchRateSuccess(rate['last_price']))
+		if (rate['error']) {
+			dispatch(fetchRateError(rate['error']));
+		} else {
+			dispatch(fetchRateSuccess(rate['last_price']));
+		}
 	})
 	.catch(err => {
-		console.log(err);
+		dispatch(fetchRateError(err));
 	})
 }

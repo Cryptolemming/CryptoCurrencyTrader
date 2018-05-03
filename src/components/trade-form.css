@@ -35,6 +35,13 @@ input {
 	font-size: 12px;
 }
 
+.loading {
+	margin-left: 80px;
+	font-size: 11px;
+	position: fixed;
+	padding: 3px;
+}
+
 .submitTrade {
     transition: background .25s ease-in-out;
 	background: #253ae4;

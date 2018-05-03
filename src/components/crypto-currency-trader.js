@@ -9,10 +9,10 @@ import style from './crypto-currency-trader.css';
 export class CryptoCurrencyTrader extends React.Component {
 
 	componentDidMount() {
-		this.props.dispatch(fetchRate());
+
 		setInterval(() => {
 			this.props.dispatch(fetchRate())
-		}, 5000);
+		}, 10000);
 	}
 
 	componentWillUnmount() {
@@ -20,7 +20,7 @@ export class CryptoCurrencyTrader extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.rate);
+		console.log('new rate: ' + this.props.rate);
 		return (
 			<section className={style.cryptoCurrencyTrader}>
 				<AccountBalance />
@@ -32,7 +32,8 @@ export class CryptoCurrencyTrader extends React.Component {
 }
 
 const mapStateToProps = state => ({
-	rate: state.rate
+	rate: state.rate,
+	loading: state.loading
 });
 
 export default connect(mapStateToProps)(CryptoCurrencyTrader);
