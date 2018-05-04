@@ -36,7 +36,6 @@ export class CryptoCurrencyTrader extends React.Component {
 
 const mapStateToProps = state => ({
 	rate: state.rate,
-	loading: state.loading
 });
 
 export default connect(mapStateToProps)(CryptoCurrencyTrader);
