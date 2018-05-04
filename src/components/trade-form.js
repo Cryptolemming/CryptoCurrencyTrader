@@ -22,16 +22,15 @@ export class TradeForm extends React.Component {
 	handleSubmitTrade(e) {
 		e.preventDefault();
 		const value = this.refs.base.value;
-		const conv = this.refs.conv.value;
+		const conv = parseFloat(this.refs.conv.value);
 		if (!(this.props.balances.USD - value < 0)
 			&& !isNaN(value)
 			&& value !== ''
 			&& this.props.rate !== undefined) {
 			this.setState({
-				lowBalance: false,
 				value: ''
 			})
-			this.props.dispatch(invokeTrade(this.refs.base.value, this.refs.conv.value));
+			this.props.dispatch(invokeTrade(value, conv));
 		}
 	}
 
@@ -40,7 +39,7 @@ export class TradeForm extends React.Component {
 		const value = this.state.value;
 		const quote = value === '' || isNaN(value) || isNaN(rate)
 					? ''
-					: parseFloat((value / rate).toFixed(8));
+					: parseFloat(value / rate).toFixed(8);
 		const loading = rate === undefined
 					  ? <span className={style.loading}>loading...</span>
 					  : '';
@@ -94,7 +93,6 @@ export class TradeForm extends React.Component {
 const mapStateToProps = state => ({
 	balances: state.balances,
 	rate: state.rate,
-	loading: state.loading
 })
 
 export default connect(mapStateToProps)(TradeForm);

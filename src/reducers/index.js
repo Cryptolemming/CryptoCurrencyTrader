@@ -24,7 +24,7 @@ export function cryptoCurrencyTraderReducer(state = initialState, action) {
 			const newBalanceUSD = (state.balances.USD - action.amountUSD).toFixed(2);
 			return Object.assign({}, state, {
 				balances: {
-					BTC: newBalanceBTC,
+					BTC: parseFloat(newBalanceBTC.toFixed(8)),
 					USD: newBalanceUSD
 				}
 			})

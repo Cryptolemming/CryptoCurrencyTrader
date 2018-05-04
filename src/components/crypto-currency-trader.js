@@ -9,7 +9,10 @@ import style from './crypto-currency-trader.css';
 export class CryptoCurrencyTrader extends React.Component {
 
 	componentDidMount() {
-
+		/*
+			Not initially fired on purpose to demonstrate validation
+			this.props.dispatch(fetchRate());
+		*/
 		setInterval(() => {
 			this.props.dispatch(fetchRate())
 		}, 10000);
