@@ -7,14 +7,17 @@ import style from './account-balance.css';
 export class AccountBalance extends React.Component {
 
 	render() {
-		const { USD, BTC } = this.props.balances;
-		const balances = [USD, parseFloat(BTC).toFixed(8)];
+		const balances = this.props.balances;
 
-		const accountBalances = balances.map(curr => {
+		const accountBalances = Object.keys(balances).map(curr => {
+			let currency = balances[curr];
+			if (currency === 'BTC') {
+				currency = parseFloat(currency).toFixed(8);
+			}
 			return (
 				<li key={uuidv4()}>
-					<span className={style.currency}>curr</span>
-					<span className={style.balance}>{curr}</span>
+					<span className={style.currency}>{curr}</span>
+					<span className={style.balance}>{currency}</span>
 				</li>
 			)
 		})

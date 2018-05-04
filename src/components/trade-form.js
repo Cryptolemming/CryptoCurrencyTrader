@@ -24,6 +24,7 @@ export class TradeForm extends React.Component {
 		const value = this.refs.base.value;
 		const conv = parseFloat(this.refs.conv.value);
 		if (!(this.props.balances.USD - value < 0)
+			&& this.props.balances.USD !== 0
 			&& !isNaN(value)
 			&& value !== ''
 			&& this.props.rate !== undefined) {

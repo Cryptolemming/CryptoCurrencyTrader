@@ -2,8 +2,8 @@ import * as ACTIONS from '../actions';
 
 const initialState = {
 	balances: {
-		BTC: 0.0000000,
-		USD: 156.12
+		USD: 156.12,
+		BTC: 0.0000000
 	},
 	rate: undefined,
 	error: undefined
@@ -24,8 +24,8 @@ export function cryptoCurrencyTraderReducer(state = initialState, action) {
 			const newBalanceUSD = (state.balances.USD - action.amountUSD).toFixed(2);
 			return Object.assign({}, state, {
 				balances: {
-					BTC: parseFloat(newBalanceBTC.toFixed(8)),
-					USD: newBalanceUSD
+					USD: newBalanceUSD,
+					BTC: parseFloat(newBalanceBTC.toFixed(8))
 				}
 			})
 		default:
