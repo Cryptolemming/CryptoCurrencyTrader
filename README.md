@@ -56,6 +56,7 @@ Included Unit tests for components in shallow and mounted forms.  The some subco
 
 Some actions and reducer functionality is tested.
 
-[Code coverage as of writing](https://stackoverflow.com/questions/48252638/how-to-use-css-selectors-in-jest-unit-testing-while-using-css-modules)
+Code coverage as of writing:
+<a href="https://ibb.co/bZLkKS"><img src="https://preview.ibb.co/etD5KS/cc.png" alt="cc" border="0"></a>
 
 CSS module classes were modified to include static class values for testing - [more here](https://stackoverflow.com/questions/48252638/how-to-use-css-selectors-in-jest-unit-testing-while-using-css-modules)
