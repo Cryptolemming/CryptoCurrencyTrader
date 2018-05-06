@@ -9,22 +9,22 @@ export class AccountBalance extends React.Component {
 	render() {
 		const balances = this.props.balances;
 
-		const accountBalances = Object.keys(balances).map(curr => {
+		const accountBalances = Object.keys(balances).map((curr,idx) => {
 			let currency = balances[curr];
 			if (currency === 'BTC') {
 				currency = parseFloat(currency).toFixed(8);
 			}
 			return (
 				<li key={uuidv4()}>
-					<span className={style.currency}>{curr}</span>
-					<span className={style.balance}>{currency}</span>
+					<span className={`${style.currency} currency`}>{curr}</span>
+					<span className={`${style.balance} balance`}>{currency}</span>
 				</li>
 			)
 		})
 
 		return(
-			<div className={style.accountBalance}>
-				<span className={style.title}>Account Balance</span>
+			<div className={`${style.accountBalance} accountBalance`}>
+				<span className={`${style.title} title`}>Account Balance</span>
 				<ul>
 					{accountBalances}
 				</ul>

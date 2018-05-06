@@ -20,6 +20,8 @@ API: [(BFX) API](https://docs.bitfinex.com/v1/reference)
 
 CORS proxy: [CORS-anywhere](http://cors-anywhere.herokuapp.com/)
 
+Testing: Jest, Enzyme
+
 ### ``UI``
 ---
 Mockup:
@@ -38,7 +40,7 @@ Initial fetch request loading:
 ---
 User can enter a USD amount and see a quote for the converted BTC amount.  Changes to the entered amount are immediately re-converted in the quote display.  User can submit a 'Trade' and see their account balances immediately updated to reflect their new account balances.  
 
-The BTCUSD ticker symbol 'last_price' is fetched on interval every 10 seconds.  The converted BTC quote is re-converted on every newly fetched BTCUSD conversion rate.  This better ensures the user is seeing a moderately accurate quote - while not over-loading the API (experienced issues at anywhere between 3-8 second intervals).  
+The BTCUSD ticker symbol 'last_price' is fetched on interval every 10 seconds.  The converted BTC quote is re-converted on every newly fetched BTCUSD conversion rate.  This better ensures the user is seeing a moderately accurate quote - while not over-loading the API (experienced issues with < 8 second intervals).  
 
 The USD amounts in trades and balances are capped at 2 decimal places.  The BTC amounts are capped at 8 decimal places as [1 BTC = 100,000,000 Satoshis](https://en.bitcoin.it/wiki/Satoshi_(unit)).
 
@@ -50,5 +52,10 @@ Error handling - errors not currently displayed to user however are represented 
 
 ### ``Testing``
 ---
-jest
-enzyme
+Included Unit tests for components in shallow and mounted forms.  The some subcomponents are also tested for existence and values.  
+
+Some actions and reducer functionality is tested.
+
+[Code coverage as of writing](https://stackoverflow.com/questions/48252638/how-to-use-css-selectors-in-jest-unit-testing-while-using-css-modules)
+
+CSS module classes were modified to include static class values for testing - [more here](https://stackoverflow.com/questions/48252638/how-to-use-css-selectors-in-jest-unit-testing-while-using-css-modules)
