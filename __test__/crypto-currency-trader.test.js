@@ -1,7 +1,9 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import configureStore from 'redux-mock-store';
+import configureMockStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import fetchMock from 'fetch-mock';
 
 import * as Actions from '../src/actions';
 import { cryptoCurrencyTraderReducer } from '../src/reducers';
@@ -28,7 +30,7 @@ describe('CryptoCurrencyTrader Component --- Shallow + Passing Store', () => {
 	const initialState = {
 		rate: 9555,
 	};
-	const mockStore = configureStore();
+	const mockStore = configureMockStore();
 	let store, wrapper;
 
 	beforeEach(() => {
@@ -54,7 +56,7 @@ describe('CryptoCurrencyTrader Component --- Mounted + Passing Store', () => {
 		},
 	};
 
-	const mockStore = configureStore();
+	const mockStore = configureMockStore();
 	let store, wrapper;
 	beforeEach(() => {
 		store = mockStore(initialState);
@@ -69,12 +71,15 @@ describe('CryptoCurrencyTrader Component --- Mounted + Passing Store', () => {
 		expect(wrapper.length).toEqual(1);
 	});
 
+	/*
 	it('should check Prop matches with initialState', () => {
 		const props = wrapper.find('CryptoCurrencyTrader').props();
+		console.log(props);
 		expect(props.balances).toEqual(initialState.balances);
 	})
+	*/
 
-	it('should contain 1 section, a AccountBalance and 1 TradeForm', () => {
+	it('should contain 1 section, 1 AccountBalance and 1 TradeForm', () => {
 		expect(wrapper.find('section').length).toEqual(1);
 		expect(wrapper.find('AccountBalance').length).toEqual(1);
 		expect(wrapper.find('TradeForm').length).toEqual(1);
@@ -98,4 +103,35 @@ describe('Reducers', () => {
 		state = cryptoCurrencyTraderReducer(state, Actions.invokeTrade(56.12, 56.12/9555));
 		expect(state.balances).toEqual({ USD: (100).toFixed(2), BTC: parseFloat((56.12/9555).toFixed(8)) });
 	});
+})
+
+/**********ASYNC ACTION TESTS************/
+describe('Async fetch request action', () => {
+	afterEach(() => {
+		fetchMock.reset();
+		fetchMock.restore();
+	})
+
+	const mockStore = configureMockStore([thunk]);
+
+	it('creates FETCH_RATE_SUCCESS when fetching rate has been done', () => {
+		fetchMock
+			.getOnce('http://cors-anywhere.herokuapp.com/https://api.bitfinex.com/v1/pubticker/BTCUSD',
+				{ body: { rate: 9555 }, headers: { mode: 'cors', headers: {'content-type': 'application/json'} }})
+
+		const expectedActions = [
+			{
+				type: Actions.FETCH_RATE_SUCCESS,
+				rate: 9555,
+			}
+		];
+
+		const store = mockStore({ rate: undefined });
+		return store.dispatch(Actions.fetchRate()).then((response) => {
+			console.log(response);
+			console.log(store.getActions());
+			expect(store.getActions()).toEqual(expectedActions);
+		});
+	})
+
 })

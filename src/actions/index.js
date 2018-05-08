@@ -18,7 +18,7 @@ export const fetchRateError = error => ({
 })
 
 export const fetchRate = () => dispatch => {
-	fetch('http://cors-anywhere.herokuapp.com/https://api.bitfinex.com/v1/pubticker/BTCUSD', {
+	return fetch('http://cors-anywhere.herokuapp.com/https://api.bitfinex.com/v1/pubticker/BTCUSD', {
 	  mode: 'cors'
 	})
 	.then(res => {

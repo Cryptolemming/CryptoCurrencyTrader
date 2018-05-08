@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import configureStore from 'redux-mock-store';
+import configureMockStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 
 import * as Actions from '../src/actions';
@@ -31,7 +31,7 @@ describe('TradeForm Component --- Shallow + Passing Store', () => {
 			BTC: 0.00000000
 		}
 	};
-	const mockStore = configureStore();
+	const mockStore = configureMockStore();
 	let store, wrapper;
 
 	beforeEach(() => {
@@ -58,7 +58,7 @@ describe('TradeForm Component --- Mounted + Passing Store', () => {
 			BTC: 0.00000000
 		}
 	};
-	const mockStore = configureStore();
+	const mockStore = configureMockStore();
 	let store, wrapper;
 
 	beforeEach(() => {
