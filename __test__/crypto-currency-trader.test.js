@@ -4,6 +4,7 @@ import configureMockStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
+import nock from 'nock';
 
 import * as Actions from '../src/actions';
 import { cryptoCurrencyTraderReducer } from '../src/reducers';
@@ -107,31 +108,24 @@ describe('Reducers', () => {
 
 /**********ASYNC ACTION TESTS************/
 describe('Async fetch request action', () => {
+	const mockStore = configureMockStore([thunk]);
+
 	afterEach(() => {
 		fetchMock.reset();
 		fetchMock.restore();
 	})
 
-	const mockStore = configureMockStore([thunk]);
+    it('creates FETCH_TODOS_SUCCESS when fetching todos has been done', () => {
+      fetchMock
+        .getOnce('http://cors-anywhere.herokuapp.com/https://api.bitfinex.com/v1/pubticker/BTCUSD', { body: { rate: 9555 }, headers: { 'content-type': 'application/json', 'mode': 'cors' } })
 
-	it('creates FETCH_RATE_SUCCESS when fetching rate has been done', () => {
-		fetchMock
-			.getOnce('http://cors-anywhere.herokuapp.com/https://api.bitfinex.com/v1/pubticker/BTCUSD',
-				{ body: { rate: 9555 }, headers: { mode: 'cors', headers: {'content-type': 'application/json'} }})
-
-		const expectedActions = [
-			{
-				type: Actions.FETCH_RATE_SUCCESS,
-				rate: 9555,
-			}
-		];
-
-		const store = mockStore({ rate: undefined });
-		return store.dispatch(Actions.fetchRate()).then((response) => {
-			console.log(response);
-			console.log(store.getActions());
-			expect(store.getActions()).toEqual(expectedActions);
-		});
-	})
-
-})
+      const expectedActions = [
+        { type: Actions.FETCH_RATE_SUCCESS, body: { rate: 9555 } }
+      ]
+      const store = mockStore({ rate: undefined })
+	  console.log(store);
+      return store.dispatch(Actions.fetchRate()).then(() => {
+        expect(store.getActions()).toEqual(expectedActions)
+      })
+    })
+});

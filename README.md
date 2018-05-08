@@ -2,7 +2,7 @@
 
 ### `Introduction`
 ---
-Currency Pair Trading user interface for market trade between USD and BTC.  Pulls the latest BTCUSD price from the Bitfinex (BFX) public API.  BTCUSD price is fetched and updated at interval to better assure user is acting on the interfaced BTC amount.  Balances are updated after a successful 'Trade'.
+Currency Pair Trading user interface for market trade between USD and BTC.  Pulls the latest BTCUSD price from the Bitfinex (BFX) public API.  BTCUSD price is fetched and display quote updated at interval to better assure user is acting on the currently interfaced BTC amount.  Balances are updated after a successful 'Trade'.
 
 ### `Install`
 ---
@@ -52,7 +52,7 @@ Error handling - errors not currently displayed to user however are represented 
 
 ### ``Testing``
 ---
-Included Unit tests for components in shallow and mounted forms.  The some subcomponents are also tested for existence and values.  
+Included Unit tests for components in shallow and mounted forms.  Some subcomponents are also tested for existence and values.  
 
 Some actions and reducer functionality is tested.
 
